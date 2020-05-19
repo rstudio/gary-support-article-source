@@ -24,7 +24,7 @@ Some features discussed in this document require RStudio 1.3 or newer. In a few 
 
 ### Basic Concept {#server-concept}
 
-RStudio Server is a web-based application loaded in your preferred browser. To put it simple, you can understand it as an online version of RStudio Desktop.
+RStudio Server is a web-based application loaded in your preferred browser. To put it simply, you can understand it as an online version of RStudio Desktop.
 
 Since the main menubar (File, Edit, and so on) is actually part of the web page, it requires slightly different shortcuts. Tapping Alt (on Windows), for example, puts focus on the Web Browser’s main menu, not the RStudio menu.
 
