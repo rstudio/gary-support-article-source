@@ -49,14 +49,14 @@ Once the "Screen Reader Support" mode is toggled on, you will hear the following
 
 > Are you sure you want to enable screen reader support? The application will reload to apply the change.
 
-You can press tab to find "Yes" button and press enter.
+You can press tab to find "Yes" button and press spacebar.
 
 You will then be asked the following question again:
 
 > Reload site?
 > Changes you made may not be saved.
 
-After tabbing to find "Reload" button and pressing enter, your RStudio will be reloaded with the screen reader support enabled.
+After tabbing to find "Reload" button and pressing spacebar, your RStudio will be reloaded with the screen reader support enabled.
 
 Besides the basic screen reader support, you can adjust various accessibility settings at Help / Accessibility / Accessibility Options...
 
@@ -138,7 +138,7 @@ You can use up/down-arrow key to cycle through your recent command history, and 
 
 Everything you type in the console will be executed via current R session as soon as you press enter key, and screen readers will announce the corresponding output in real time.
 
-If you would like to review the executed output in more detail via arrow keys, you first need to put your cursor to the "Console Output" area by pressing "Alt+Shift+2" on Windows or Linux; "Ctrl+Alt+2" on Mac. Since the console output area requires browse mode (also known as virtual cursor or QuickNav mode), turn it on in case your arrow keys do not respond as you expected.
+If you would like to review the executed output in more detail via arrow keys, you first need to put your cursor to the "Console Output" area by pressing "Alt+Shift+2" on Windows or Linux; "Ctrl+Opt+2" on Mac. Since the console output area requires browse mode (also known as virtual cursor or QuickNav mode), turn it on in case your arrow keys do not respond as you expected.
 
 An useful shortcut key to clear the entire console output is "Ctrl+L". You may want to press this key before executing a new command to secure a cleaner output buffer for screen readers.
 
