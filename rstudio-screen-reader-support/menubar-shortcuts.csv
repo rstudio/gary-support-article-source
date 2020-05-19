@@ -1,0 +1,12 @@
+Description,Windows & Linux,Mac
+File Menu,Alt+Shift+F,Ctrl+Opt+F
+Edit Menu,Alt+Shift+E,Ctrl+Opt+I
+Code Menu,Alt+Shift+C,Ctrl+Opt+C
+View Menu,Alt+Shift+V,Ctrl+Opt+V
+Plots Menu,Alt+Shift+P,Ctrl+Opt+P
+Session Menu,Ctrl+Alt+Shift+S,Ctrl+Opt+Shift+S
+Build Menu,Alt+Shift+B,Ctrl+Opt+B
+Debug Menu,Alt+Shift+U,Ctrl+Opt+U
+Profile Menu,Alt+Shift+I,Ctrl+Opt+O
+Tools Menu,Alt+Shift+S,Ctrl+Opt+L
+Help Menu,Alt+Shift+H,Ctrl+Opt+H
