@@ -1,6 +1,6 @@
 ---
 title: "Using RStudio Server on Windows"
-date: "Last updated on 2020-06-15"
+date: "Last updated on 2020-06-17"
 output:
   bookdown::html_document2:
     keep_md: true
@@ -17,9 +17,11 @@ knit: "bookdown::render_book"
 
 ## Introduction {#intro}
 
-This article explains about how to set up RStudio Server on Windows platform.
+This article explains how to set up RStudio Server on Windows platform.
 
-As RStudio Server has primarily been designed to work with Linux distributions, Windows users must require a virtualization technology, called ["Windows Subsystem for Linux" (WSL)](https://docs.microsoft.com/en-us/windows/wsl/){target="_blank"}, to run a Linux kernel inside their system.
+As RStudio Server has primarily been designed to work with Linux distributions, Windows users require a virtualization technology, called ["Windows Subsystem for Linux" (WSL)](https://docs.microsoft.com/en-us/windows/wsl/){target="_blank"}, to run a Linux kernel inside their system.
+
+* **Note:** We do not support running RStudio Server Pro on WSL at this time, and recommend RStudio Server on WSL only for single-user use, not as a way to deploy a multi-user server.
 
 ## Prerequisite {#prereq}
 
@@ -27,8 +29,6 @@ We recommend using the enhanced WSL (version 2) for setting up RStudio Server, w
 
 1. You can check your Windows version by pressing the `Windows logo key + R`, type `winver`, and hit enter.
 1. In case your system is lower than the suggested version, please [update to the latest Windows version](ms-settings:windowsupdate){target="_blank"}.
-
-* **Note:** For builds lower than 19041, WSL is not supported at all.
 
 ## WSL Setup {#wsl-setup}
 
@@ -64,24 +64,15 @@ Once you have met the [prerequisite](#prereq), you need to enable WSL features o
 
     > WSL 2 requires an update to its kernel component. For information please visit `https://aka.ms/wsl2kernel`
 
-## Linux Distribution Setup {#linux-setup}
+## Linux Distribution Setup {#Linux-setup}
 
 After the [WSL 2 feature](#wsl-setup) has been enabled, you have to download and install a Linux distribution from [Microsoft Store](https://aka.ms/wslstore){target="_blank"}.
 
-Alternatively, you can also download and manually install Linux distros by clicking any of the links below:
+While RStudio Server does support other distros, details in this article will be specific to Ubuntu 20.04.
 
-* [Ubuntu 20.04](https://aka.ms/wslubuntu2004)
-* [Ubuntu 20.04 ARM](https://aka.ms/wslubuntu2004arm)
-* [Ubuntu 18.04](https://aka.ms/wsl-ubuntu-1804)
-* [Ubuntu 18.04 ARM](https://aka.ms/wsl-ubuntu-1804-arm)
-* [Ubuntu 16.04](https://aka.ms/wsl-ubuntu-1604)
-* [Debian GNU/Linux](https://aka.ms/wsl-debian-gnulinux)
-* [Kali Linux](https://aka.ms/wsl-kali-linux-new)
-* [OpenSUSE Leap 42](https://aka.ms/wsl-opensuse-42)
-* [SUSE Linux Enterprise Server 12](https://aka.ms/wsl-sles-12)
-* [Fedora Remix for WSL](https://github.com/WhitewaterFoundry/WSLFedoraRemix/releases/)
+You can download and manually install the distro by clicking the link below:
 
-We will download and install ["Ubuntu 20.04"](https://aka.ms/wslubuntu2004) as an example for this article.
+* [Download Ubuntu 20.04](https://aka.ms/wslubuntu2004).
 
 Once the distribution has been installed and launched, you will be prompted the initial user configuration like below:
 
@@ -107,7 +98,7 @@ exit
 
 Now that you have successfully installed a Linux distribution on your system via WSL, you can setup and run RStudio Server by following the procedures below:
 
-1. Type `wsl` in either PowerShell or CMD terminal to launch your installed linux distro.
+1. Press `Windows` logo key to open start menu, then type `wsl` to launch your installed Linux distro.
 1. Make sure your Linux packages up-to-date using the following command (we will assume that you have installed a Ubuntu distribution):
 
     
@@ -123,10 +114,10 @@ Now that you have successfully installed a Linux distribution on your system via
     
     ```bash
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-    sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+    sudo add-apt-repository 'deb https://cloud.r-project.org/bin/Linux/ubuntu focal-cran40/'
     ```
 
-    * **Note:** More detailed information on installing the latest R for Linux can be found at [the official CRAN page](https://cran.r-project.org/bin/linux/ubuntu/){target="_blank"}.
+    * **Note:** More detailed information on installing the latest R for Linux can be found at [the official CRAN page](https://cran.r-project.org/bin/Linux/ubuntu/){target="_blank"}.
 
 1. Install R with some essential dependencies for the RStudio Server and devtools:
 
@@ -135,21 +126,17 @@ Now that you have successfully installed a Linux distribution on your system via
     sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
     ```
 
-1. Obtain the download URL of the RStudio Server you want to install.
-
-    * **Note:** You can explore some RStudio download pages, such as [RStudio Release](https://rstudio.com/products/rstudio/download/#download){target="_blank"}, [RStudio Preview (close to release)](https://rstudio.com/products/rstudio/download/preview/){target="_blank"}, and [RStudio Daily](https://dailies.rstudio.com/){target="_blank"}. Make sure you choose RStudio *Server* (not Desktop) and match with your installed Linux distribution type and version.
-
 1. Install RStudio Server:
 
     
     ```bash
-    wget https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.4.467-amd64.deb
-    sudo gdebi rstudio-server-1.4.467-amd64.deb
+    wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb
+    sudo gdebi rstudio-server-latest-amd64.deb
     ```
 
-    * **Note1:**We have downloaded the daily version, `rstudio-server-1.4.467-amd64.deb` for this demonstration; however, the URL and file name can vary depending on what you have chosen.
+    * **Note1:** You may receive a warning message like "Couldn't find an alternative telinit implementation to spawn." However, our testing results have revealed that there is no issue with using RStudio Server regardless of this warning.
 
-    * **Note2:** You may be prompted a warning message like "Couldn't find an alternative telinit implementation to spawn." However, our testing results have revealed that there is no issue with using RStudio Server regardless of this warning.
+    * **Note2:** While this article has demonstrated the installation of the current stable release, you can also try with other versions by consulting with some RStudio download pages, such as [RStudio Release](https://rstudio.com/products/rstudio/download/#download){target="_blank"}, [RStudio Preview](https://rstudio.com/products/rstudio/download/preview/){target="_blank"}, and [RStudio Daily](https://dailies.rstudio.com/){target="_blank"}. Make sure you choose RStudio *Server* (not Desktop) and match with your installed Linux distribution type and version.
 
 1. Launch RStudio Server:
 
@@ -158,11 +145,39 @@ Now that you have successfully installed a Linux distribution on your system via
     sudo rstudio-server start
     ```
 
-    * **Note:** If there was no error message, you can assume that your RStudio Server has been successfully loaded.
+    * **Note1:** If there was no error message, you can assume that your RStudio Server has been successfully loaded.
+
+    * **Note2:** If you terminate and restart WSL, you will need to run `sudo rstudio-server start` again to get RStudio Server up and running.
       
 1. Access your server at [http://localhost:8787](http://localhost:8787){target="_blank"}.
 
     * **Note:** The user name and password are the same as your Linux  system's.
+
+## Removing RStudio Server {#remove-rstudio-server}
+
+Sometimes you may want to remove the installed RStudio Server. For example, you have to do this in order to upgrade your RStudio Server.
+
+The following steps explain how to safely achieve this goal:
+
+1. Press `Windows` logo key to open start menu, then type `wsl` to launch your installed Linux distro.
+1. To stop RStudio Server, type the following command in the WSL terminal:
+
+    
+    ```bash
+    sudo rstudio-server stop
+    ```
+
+    * **Note:** Provide the password of your user account that you created for the Linux system, not the Windows password to log in for your PC.
+
+1. Remove your Server:
+
+    
+    ```bash
+    sudo apt-get remove rstudio-server -y
+    ```
+
+
+
 
 <!--chapter:end:draft.Rmd-->
 
